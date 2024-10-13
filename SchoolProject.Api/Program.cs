@@ -21,9 +21,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection"));
 });
+
 #region Dendencey Injeaction
 builder.Services.AddInfrastructureDependencies()
-                .AddServiceDependencies().AddCoreDependencies();
+                .AddServiceDependencies()
+                .AddCoreDependencies()
+                .AddServicesRegistration();
 #endregion
 #region Localization
 
