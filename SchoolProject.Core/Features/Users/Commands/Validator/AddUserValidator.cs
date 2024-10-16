@@ -30,12 +30,12 @@ namespace SchoolProject.Core.Features.Users.Commands.Validator
             RuleFor(x => x.Email).NotEmpty()
                 .NotNull().WithMessage("{PropertyValue} Must Be Not Null").EmailAddress().WithMessage("Please Enter valid Email");
 
-            RuleFor(x => x.address).NotEmpty()
+            RuleFor(x => x.Address).NotEmpty()
             .NotNull()
             .MaximumLength(100).WithMessage("Address must not exceed 100 characters.")
             .MinimumLength(10).WithMessage("Address must be at least 10 characters long.");
 
-            RuleFor(x => x.country).NotEmpty()
+            RuleFor(x => x.Country).NotEmpty()
                 .NotNull()
                 .MaximumLength(50).MinimumLength(5).WithMessage("The Name Country Must Max 50 And Minimum 5");
 

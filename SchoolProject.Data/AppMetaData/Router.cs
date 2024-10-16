@@ -20,5 +20,10 @@
             public const string prefix = Url + "/Department";
             public const string GetById = prefix + "/id";
         }
+        public static class UserRoute
+        {
+            public const string prefix = Url + "/User";
+            public const string Create = prefix + "/Create";
+        }
     }
 }

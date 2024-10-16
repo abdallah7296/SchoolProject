@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 
 namespace SchoolProject.Core.Base
 {
     public class Response<T>
     {
+
         public Response()
         {
-
+            // تهيئة قائمة الأخطاء
+            Errors = new List<string>();
         }
         public Response(T data, string message = null)
         {

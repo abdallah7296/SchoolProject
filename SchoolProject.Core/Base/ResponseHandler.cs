@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchoolProject.Core.Base
+﻿namespace SchoolProject.Core.Base
 {
 
     public class ResponseHandler
@@ -43,25 +37,27 @@ namespace SchoolProject.Core.Base
                 Message = "UnAuthorized"
             };
         }
-        public Response<T> BadRequest<T>(string Message = null)
+        public Response<T> BadRequest<T>(string Message = null, List<string> errors = null)
         {
             return new Response<T>()
             {
                 StatusCode = System.Net.HttpStatusCode.BadRequest,
                 Succeeded = false,
-                Message = Message == null ? "Bad Request" : Message
+                Message = Message == null ? "Bad Request" : Message,
+                Errors = errors
             };
         }
-        public Response<T> UnprocessableEntity<T>(string Message = null)
+        public Response<T> UnprocessableEntity<T>(string message = null, List<string> errors = null)
         {
-            return new Response<T>()
+            return new Response<T>
             {
                 StatusCode = System.Net.HttpStatusCode.UnprocessableEntity,
                 Succeeded = false,
-                Message = Message == null ? "Unprocessable Entity" : Message
+                Message = message ?? "Unprocessable Entity",
+                Errors = errors ?? new List<string>() // تضمين الأخطاء إذا كانت موجودة
             };
         }
-        public Response<T> NotFound<T>(string message = null)
+        public Response<T> NotFound<T>(string message = null, object Meta = null)
         {
             return new Response<T>()
             {

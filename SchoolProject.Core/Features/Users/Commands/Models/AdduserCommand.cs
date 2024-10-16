@@ -9,10 +9,9 @@ namespace SchoolProject.Core.Features.Users.Commands.Models
         public string FullName { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
-
         // public string phone { get; set; }
-        public string address { get; set; }
-        public string country { get; set; }
+        public string Address { get; set; }
+        public string Country { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
