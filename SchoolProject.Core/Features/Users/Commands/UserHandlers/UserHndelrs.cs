@@ -5,9 +5,12 @@ using SchoolProject.Core.Base;
 using SchoolProject.Core.Features.Users.Commands.Models;
 using SchoolProject.Data.Entities;
 
-namespace SchoolProject.Core.Features.Users.Commands.AddUserHandlers
+namespace SchoolProject.Core.Features.Users.Commands.UserHandlers
 {
-    public class AddUserHandlers : ResponseHandler, IRequestHandler<AddUserCommand, Response<string>>
+    public class AddUserHandlers : ResponseHandler
+        , IRequestHandler<AddUserCommand, Response<string>>
+        , IRequestHandler<EditUserCommand, Response<string>>
+        , IRequestHandler<DeleteUserCommand, Response<string>>
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
@@ -36,6 +39,25 @@ namespace SchoolProject.Core.Features.Users.Commands.AddUserHandlers
             if (!CreateResult.Succeeded) return BadRequest<string>(CreateResult.Errors.FirstOrDefault().Description);
             // Created
             return Created("Added User Successfully ");
+        }
+
+        public async Task<Response<string>> Handle(EditUserCommand request, CancellationToken cancellationToken)
+        {
+            var oldUser = await _userManager.FindByIdAsync(request.Id.ToString());
+            if (oldUser == null) return NotFound<string>("This Id is Not Found");
+            var newUser = _mapper.Map(request, oldUser);
+            var result = await _userManager.UpdateAsync(newUser);
+            if (!result.Succeeded) return BadRequest<string>();
+            return Success("Updated successfully");
+        }
+
+        public async Task<Response<string>> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+        {
+            var user = await _userManager.FindByIdAsync(request.Id.ToString());
+            if (user == null) return NotFound<string>();
+            var result = await _userManager.DeleteAsync(user);
+            if (!result.Succeeded) return BadRequest<string>();
+            return Success<string>("Deleted successfully");
         }
         #endregion
 

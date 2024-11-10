@@ -330,10 +330,6 @@ namespace SchoolProject.infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
-<<<<<<< HEAD
-=======
-                        .IsRequired()
->>>>>>> 5b38d910be889b9b6a0565f3d81c8bc60614692d
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -341,10 +337,6 @@ namespace SchoolProject.infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-<<<<<<< HEAD
-=======
-                        .IsRequired()
->>>>>>> 5b38d910be889b9b6a0565f3d81c8bc60614692d
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -354,13 +346,10 @@ namespace SchoolProject.infrastructure.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-<<<<<<< HEAD
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-=======
->>>>>>> 5b38d910be889b9b6a0565f3d81c8bc60614692d
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 

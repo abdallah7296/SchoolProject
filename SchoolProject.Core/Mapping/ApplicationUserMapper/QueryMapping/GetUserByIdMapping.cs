@@ -1,13 +1,13 @@
-﻿using SchoolProject.Core.Features.Users.Commands.Models;
+﻿using SchoolProject.Core.Features.Users.Results;
 using SchoolProject.Data.Entities;
 
 namespace SchoolProject.Core.Mapping.ApplicationUserMapper
 {
     public partial class ApplicationUserProfile
     {
-        public void AddUserCommandMapping()
+        public void GetUserByIdMapping()
         {
-            CreateMap<AddUserCommand, User>();
+            CreateMap<User, GetUserByIdResponse>();
         }
 
     }
